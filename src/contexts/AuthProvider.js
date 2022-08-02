@@ -1,9 +1,12 @@
-import { createContext, useState } from "react";
+import { createContext } from "react";
+import { useParams } from "react-router-dom";
 import { api } from "../api/api";
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
+    const { id } = useParams()
+
 
     const register = async (email, password) => {
         try {
@@ -22,7 +25,6 @@ export const AuthProvider = ({ children }) => {
             return null
         }
     }
-
 
     const signin = async (email, password) => {
         try {
