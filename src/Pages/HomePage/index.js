@@ -33,6 +33,7 @@ export const HomePage = () => {
         if(name && job) {
             const create = await createUser(name, job)
             if(create) {
+                console.log(create)
                 alert('Usuário criado com sucesso.')
                 setOpenModal(!openModal)
             } else {

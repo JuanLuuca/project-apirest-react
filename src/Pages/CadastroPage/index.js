@@ -23,6 +23,7 @@ export const CadastroPage = () => {
        if(email && password) {
             const cadastro = await register(email, password)
             if(cadastro && password === confirmPassword) {
+                console.log(cadastro)
                 alert('Cadastro efetuado com sucesso')
                 navigate('/')
             } else {

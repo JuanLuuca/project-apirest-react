@@ -22,6 +22,7 @@ export const LoginPage = () => {
         if(email && password) {
             const logged = await signin(email, password)
             if(logged) {
+                console.log(logged)
                 alert('Logado com sucesso')   
                 navigate('/home')
                 window.location.reload()

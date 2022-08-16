@@ -20,7 +20,7 @@ export const UsersPage = () => {
     useEffect(() => {
         const ReqRes = async () => {
             const response = await api.get(`/users/${id}`);
-            const data = response.data.data
+            const data = await response.data.data
             setRepos(data)
         }
         ReqRes()
@@ -30,8 +30,10 @@ export const UsersPage = () => {
         e.preventDefault();
 
         if(name && job) {
-            const edit = await api.put(`/users/${id}`, { name, job })
-            if(edit) {
+            const response = await api.put(`/users/${id}`, { name, job })
+            const data = await response.data
+            if(data) {
+                console.log(data)
                 alert('Atualização de dados feita com sucesso')
                 setOpenModal(!openModal)
                 setCloseUsers(!openModal)

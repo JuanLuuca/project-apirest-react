@@ -1,12 +1,9 @@
 import { createContext } from "react";
-import { useParams } from "react-router-dom";
 import { api } from "../api/api";
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-    const { id } = useParams()
-
 
     const register = async (email, password) => {
         try {
@@ -30,7 +27,11 @@ export const AuthProvider = ({ children }) => {
         try {
             const response = await api.post('/login', { email, password })
             const token = await response?.data?.token
+            if(token) {
             localStorage.setItem('token', token)
+            } else {
+                return null
+            }
             return response.data
         } catch (error) {   
             return null
